@@ -25,9 +25,9 @@ import com.zhoujian.contentprivider.R;
 public class MainActivity extends Activity
 {
 
-
     private Uri uri;
     private Cursor mCursor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
