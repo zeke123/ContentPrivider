@@ -19,12 +19,12 @@ import com.zhoujian.contentprivider.R;
 
  ContentPrivider的底层是Binder
 
-
  */
 
 
 public class MainActivity extends Activity
 {
+
 
     private Uri uri;
     private Cursor mCursor;
