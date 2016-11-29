@@ -39,5 +39,6 @@ public class MainActivity extends Activity
         mCursor = getContentResolver().query(uri, null, null, null, null);
         mCursor = getContentResolver().query(uri, null, null, null, null);
 
+
     }
 }
