@@ -8,7 +8,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.util.Log;
-
 import com.zhoujian.contentprivider.db.DbOpenHelper;
 
 /**
@@ -33,8 +32,6 @@ import com.zhoujian.contentprivider.db.DbOpenHelper;
  外部应用就可以访问这个BookPrivider，也必须加上这个权限（如果要是两个应用，就必须加上权限）
 
  android:permission="com.zhoujian.contentPrivider.permission"
-
-
 
  */
 

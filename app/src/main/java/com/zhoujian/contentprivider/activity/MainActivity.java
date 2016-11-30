@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-
 import com.zhoujian.contentprivider.R;
 import com.zhoujian.contentprivider.bean.Book;
 import com.zhoujian.contentprivider.bean.User;
@@ -32,7 +31,6 @@ public class MainActivity extends Activity
 
 
     public static final String TAG = "MainActivity";
-
     private Uri bookUri;
     private Uri userUri;
     private Cursor bookCursor;
@@ -76,11 +74,8 @@ public class MainActivity extends Activity
             e.printStackTrace();
         }
 
-
         //用户url
         userUri = Uri.parse("content://com.zhoujian.contentPrivider.bookprivider/user");
-
-
         //查询用户
         Cursor userCursor = getContentResolver().query(userUri, new String[]{"_id", "name","sex"}, null, null, null);
         User user = null;
@@ -99,13 +94,5 @@ public class MainActivity extends Activity
             Log.d(TAG, user.toString());
         }
         userCursor.close();
-
-
-
-
-
-
-
-
     }
 }
