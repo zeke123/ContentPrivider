@@ -74,7 +74,6 @@ public class BookPrivider extends ContentProvider
     {
         mUriMatcher.addURI(AUTHORITIES,"book",BOOK_URI_CODE);
         mUriMatcher.addURI(AUTHORITIES,"user",USER_URI_CODE);
-
     }
 
     private Context mContext;
@@ -87,9 +86,7 @@ public class BookPrivider extends ContentProvider
         //获取当前线程名
         Log.d(TAG, "onCreate()，当前线程==="+Thread.currentThread().getName());
         mContext = getContext();
-
         initData();
-
         return true;
     }
 
@@ -116,16 +113,10 @@ public class BookPrivider extends ContentProvider
     {
         //获取当前线程名
         Log.d(TAG, "query()，当前线程==="+Thread.currentThread().getName());
-
         table = getTableName(uri);
-
         if (table == null) {
-
             throw new IllegalArgumentException("不支持该uir");
-
         }
-
-
         return mDatabase.query(table,projection,selection,selectionArgs,null,null,sortOrder,null);
     }
 
@@ -135,22 +126,13 @@ public class BookPrivider extends ContentProvider
 
         switch (mUriMatcher.match(uri))
         {
-
             case BOOK_URI_CODE:
-
                 tableName = DbOpenHelper.BOOK_TABLE;
-
                 break;
-
             case USER_URI_CODE:
-
                 tableName = DbOpenHelper.USER_TABLE;
-
                 break;
-
         }
-
-
         return  tableName;
     }
 
@@ -166,7 +148,6 @@ public class BookPrivider extends ContentProvider
     {
         table = getTableName(uri);
         mDatabase.insert(table,null,values);
-
         mContext.getContentResolver().notifyChange(uri,null);
         Log.d(TAG, "insert()");
         return uri;
@@ -175,14 +156,10 @@ public class BookPrivider extends ContentProvider
     public int delete(Uri uri, String s, String[] strings)
     {
         table = getTableName(uri);
-
         int count = mDatabase.delete(table,s,strings);
-
         if (count>0) {
             mContext.getContentResolver().notifyChange(uri,null);
         }
-
-
         Log.d(TAG, "delete()");
         return count;
     }
@@ -191,16 +168,12 @@ public class BookPrivider extends ContentProvider
     public int update(Uri uri, ContentValues values, String s, String[] strings)
     {
         Log.d(TAG, "update()");
-
         table = getTableName(uri);
-
         int row = mDatabase.update(table,values,s,strings);
-
         if (row>0) {
             mContext.getContentResolver().notifyChange(uri,null);
         }
         Log.d(TAG, "delete()");
-
         return row;
     }
 }
