@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.zhoujian.contentprivider">
 
+
+    <uses-permission android:name="com.bookprivider"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,13 +21,9 @@
 
         <provider
             android:name="com.zhoujian.contentprivider.privider.BookPrivider"
-            android:process="com.zhoujian.contentPrivider.privider"
-            android:authorities="com.zhoujian.contentPrivider.bookprivider"
-            android:permission="com.zhoujian.contentPrivider.permission"/>
-
-
-
-
+            android:process=":privider"
+            android:permission="com.bookprivider"
+            android:authorities="com.zhoujian.contentPrivider.bookprivider"/>
 
     </application>
 
