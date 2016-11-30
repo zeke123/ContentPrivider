@@ -1,10 +1,15 @@
 package com.zhoujian.contentprivider.activity;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
+
 import com.zhoujian.contentprivider.R;
+import com.zhoujian.contentprivider.bean.Book;
+import com.zhoujian.contentprivider.bean.User;
 
 
 /**
@@ -25,8 +30,14 @@ import com.zhoujian.contentprivider.R;
 public class MainActivity extends Activity
 {
 
-    private Uri uri;
-    private Cursor mCursor;
+
+    public static final String TAG = "MainActivity";
+
+    private Uri bookUri;
+    private Uri userUri;
+    private Cursor bookCursor;
+    private int mInt;
+    private String mString;
 
 
     @Override
@@ -34,10 +45,66 @@ public class MainActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        uri = Uri.parse("content://com.zhoujian.contentPrivider.bookprivider");
-        mCursor = getContentResolver().query(uri, null, null, null, null);
-        mCursor = getContentResolver().query(uri, null, null, null, null);
-        mCursor = getContentResolver().query(uri, null, null, null, null);
+
+        try {
+
+            //书籍的url
+            bookUri = Uri.parse("content://com.zhoujian.contentPrivider.bookprivider/book");
+
+            ContentValues values = new ContentValues();
+            values.put("_id",4);
+            values.put("name","市场营销学");
+            //插入书籍
+            getContentResolver().insert(bookUri,values);
+            //查询书籍
+            bookCursor = getContentResolver().query(bookUri, new String[]{"_id", "name"}, null, null, null);
+            Book book = null;
+            while (bookCursor.moveToNext())
+            {
+                book = new Book();
+                mInt = bookCursor.getInt(0);
+                book.setBookId(mInt);
+                mString = bookCursor.getString(1);
+                book.setBookName(mString);
+
+                Log.d(TAG, book.toString());
+            }
+            bookCursor.close();
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+        //用户url
+        userUri = Uri.parse("content://com.zhoujian.contentPrivider.bookprivider/user");
+
+
+        //查询用户
+        Cursor userCursor = getContentResolver().query(userUri, new String[]{"_id", "name","sex"}, null, null, null);
+        User user = null;
+        while (userCursor.moveToNext())
+        {
+            user = new User();
+            int userId = userCursor.getInt(0);
+            user.setUserId(userId);
+
+            String userName = userCursor.getString(1);
+            user.setUserName(userName);
+
+            int isMale = userCursor.getInt(2);
+            user.setIsMale(isMale);
+
+            Log.d(TAG, user.toString());
+        }
+        userCursor.close();
+
+
+
+
+
+
 
 
     }
